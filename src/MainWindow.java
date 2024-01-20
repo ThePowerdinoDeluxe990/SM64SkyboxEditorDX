@@ -59,7 +59,7 @@ public class MainWindow extends JFrame implements ActionListener {
         SkyBoxes.put("Dark World: C57915", new Dimension(256,256));
         SkyBoxes.put("Purple Sky: C7FA55", new Dimension(256,256));
 
-        f = new JFrame("SM64 Skybox Editor DX v1.0");
+        f = new JFrame("SM64 Skybox Importer DX v1.0");
         try {
             f.setIconImage(new ImageIcon(getClass().getResource("/iconImage.png")).getImage());
         }catch(Exception main){
