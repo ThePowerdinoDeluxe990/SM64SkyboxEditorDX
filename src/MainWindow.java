@@ -60,6 +60,7 @@ public class MainWindow extends JFrame implements ActionListener {
         SkyBoxes.put("Purple Sky: C7FA55", new Dimension(256,256));
 
         f = new JFrame("SM64 Skybox Editor DX v1.0");
+        f.setIconImage(new ImageIcon(getClass().getResource("/iconImage.png")).getImage());
         f.setLayout(new BoxLayout(f.getContentPane(),BoxLayout.Y_AXIS));
 
 
