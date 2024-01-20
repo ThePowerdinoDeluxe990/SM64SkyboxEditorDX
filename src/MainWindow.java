@@ -60,7 +60,15 @@ public class MainWindow extends JFrame implements ActionListener {
         SkyBoxes.put("Purple Sky: C7FA55", new Dimension(256,256));
 
         f = new JFrame("SM64 Skybox Editor DX v1.0");
-        f.setIconImage(new ImageIcon(getClass().getResource("/iconImage.png")).getImage());
+        try {
+            f.setIconImage(new ImageIcon(getClass().getResource("/iconImage.png")).getImage());
+        }catch(Exception main){
+             final Runnable runnable =
+                     (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+         if (runnable != null) runnable.run();
+                JOptionPane.showMessageDialog(null,"No Icon detected","Error",JOptionPane.ERROR_MESSAGE);
+        }
+
         f.setLayout(new BoxLayout(f.getContentPane(),BoxLayout.Y_AXIS));
 
 
