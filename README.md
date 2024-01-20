@@ -1,4 +1,4 @@
-# SM64SkyboxImporterDX
+# SM64SkyboxEditorDX
 Fork made by ThePowerdinoDeluxe990
 Original creator: DavidSM64
 </br>
