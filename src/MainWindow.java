@@ -22,7 +22,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     HashMap<String, Dimension> SkyBoxes = new HashMap<String, Dimension>();
 
-
+    AlertApp alertNoRom = new AlertApp();
     JFileChooser jfc;
     JButton openROM = new JButton("Browse");
     JTextField romLoc = new JTextField();
@@ -63,10 +63,7 @@ public class MainWindow extends JFrame implements ActionListener {
         try {
             f.setIconImage(new ImageIcon(getClass().getResource("/iconImage.png")).getImage());
         }catch(Exception main){
-             final Runnable runnable =
-                     (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-         if (runnable != null) runnable.run();
-                JOptionPane.showMessageDialog(null,"No Icon detected","Error",JOptionPane.ERROR_MESSAGE);
+            AlertApp.ErrorRom("No Icon detected");
         }
 
         f.setLayout(new BoxLayout(f.getContentPane(),BoxLayout.Y_AXIS));
@@ -258,10 +255,7 @@ public class MainWindow extends JFrame implements ActionListener {
             case "Preview":
                 if (rom != null) RenderImage();
                 else{
-                    final Runnable runnable =
-                            (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-                    if (runnable != null) runnable.run();
-                    JOptionPane.showMessageDialog(null,"No rom detected","Error",JOptionPane.ERROR_MESSAGE);
+                    AlertApp.ErrorRom("No rom detected");
                 }
                 break;
             case "Ok":
@@ -307,9 +301,7 @@ public class MainWindow extends JFrame implements ActionListener {
                 break;
             case "#":
                 if(rom == null){
-                    final Runnable runnable =
-                            (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-                    JOptionPane.showMessageDialog(null,"No rom detected","Error",JOptionPane.ERROR_MESSAGE);
+                    AlertApp.ErrorRom("No rom detected");
                 }else{
                     if(enabledGrid){
                         ImagePreview.setLayout(new GridLayout(8,8,0,0));
@@ -330,10 +322,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
             case "comboBoxChanged":
                 if(rom == null){
-                    final Runnable runnable =
-                            (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-                    if (runnable != null) runnable.run();
-                    JOptionPane.showMessageDialog(null,"No rom detected","Error",JOptionPane.ERROR_MESSAGE);
+                    AlertApp.ErrorRom("No rom detected");
                 }else {
                     if (Images.getSelectedItem() != null && !isChanging) {
                         byte[] orderBytes = IntToBytes(Integer.valueOf(Images.getSelectedItem().toString(), 16));
@@ -404,10 +393,7 @@ public class MainWindow extends JFrame implements ActionListener {
         }
 
         if(rom == null){
-            final Runnable runnable =
-                    (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-            if (runnable != null) runnable.run();
-            JOptionPane.showMessageDialog(null,"No rom detected","Error",JOptionPane.ERROR_MESSAGE);
+            AlertApp.ErrorRom("No rom detected");
         }else {
             ByteBuffer bb = ByteBuffer.wrap(rom);
             bb.position(orderLoc);
@@ -660,10 +646,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private void SaveRom(){
         // Save data to the rom
         if(rom == null){
-            final Runnable runnable =
-                    (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-            if (runnable != null) runnable.run();
-            JOptionPane.showMessageDialog(null,"No rom detected","Error",JOptionPane.ERROR_MESSAGE);
+            AlertApp.ErrorRom("No rom detected");
         }else {
             save.setForeground(Color.blue);
             save.setText("Saving...");
