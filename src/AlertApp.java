@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class AlertApp {
 
-    public static void ErrorRom( String message){
+    public static void Erroralert(String message){
         final Runnable runnable =
                 (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
         if (runnable != null) runnable.run();

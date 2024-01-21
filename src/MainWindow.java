@@ -17,12 +17,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static java.util.Objects.*;
+
 public class MainWindow extends JFrame implements ActionListener {
     byte[] rom;
 
     HashMap<String, Dimension> SkyBoxes = new HashMap<String, Dimension>();
 
-    AlertApp alertNoRom = new AlertApp();
     JFileChooser jfc;
     JButton openROM = new JButton("Browse");
     JTextField romLoc = new JTextField();
@@ -61,9 +62,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
         f = new JFrame("SM64 Skybox Importer DX v1.0");
         try {
-            f.setIconImage(new ImageIcon(getClass().getResource("/iconImage.png")).getImage());
+            f.setIconImage(new ImageIcon(requireNonNull(getClass().getResource("/Assets/iconImage.png"))).getImage());
         }catch(Exception main){
-            AlertApp.ErrorRom("No Icon detected");
+            AlertApp.Erroralert("No Icon detected");
         }
 
         f.setLayout(new BoxLayout(f.getContentPane(),BoxLayout.Y_AXIS));
@@ -255,7 +256,7 @@ public class MainWindow extends JFrame implements ActionListener {
             case "Preview":
                 if (rom != null) RenderImage();
                 else{
-                    AlertApp.ErrorRom("No rom detected");
+                    AlertApp.Erroralert("No rom detected");
                 }
                 break;
             case "Ok":
@@ -301,7 +302,7 @@ public class MainWindow extends JFrame implements ActionListener {
                 break;
             case "#":
                 if(rom == null){
-                    AlertApp.ErrorRom("No rom detected");
+                    AlertApp.Erroralert("No rom detected");
                 }else{
                     if(enabledGrid){
                         ImagePreview.setLayout(new GridLayout(8,8,0,0));
@@ -322,7 +323,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
             case "comboBoxChanged":
                 if(rom == null){
-                    AlertApp.ErrorRom("No rom detected");
+                    AlertApp.Erroralert("No rom detected");
                 }else {
                     if (Images.getSelectedItem() != null && !isChanging) {
                         byte[] orderBytes = IntToBytes(Integer.valueOf(Images.getSelectedItem().toString(), 16));
@@ -393,7 +394,7 @@ public class MainWindow extends JFrame implements ActionListener {
         }
 
         if(rom == null){
-            AlertApp.ErrorRom("No rom detected");
+            AlertApp.Erroralert("No rom detected");
         }else {
             ByteBuffer bb = ByteBuffer.wrap(rom);
             bb.position(orderLoc);
@@ -646,7 +647,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private void SaveRom(){
         // Save data to the rom
         if(rom == null){
-            AlertApp.ErrorRom("No rom detected");
+            AlertApp.Erroralert("No rom detected");
         }else {
             save.setForeground(Color.blue);
             save.setText("Saving...");
